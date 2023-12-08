@@ -53,7 +53,23 @@ class _ChatScreenState extends State<ChatScreen> {
                     return ListView.builder(
                       padding: const EdgeInsets.all(8.0),
                       reverse: true,
-                      itemBuilder: (_, int index) => ListTile(title: Text(state.messages[index])),
+                      itemBuilder: (_, int index) {
+                        final message = state.messages[index];
+                        final isBonnieMessage = message.startsWith("BONNIE:");
+
+                        return Align(
+                          alignment: isBonnieMessage ? Alignment.centerRight : Alignment.centerLeft,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                            decoration: BoxDecoration(
+                              color: isBonnieMessage ? Colors.blue[100] : Colors.grey[200],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(message),
+                          ),
+                        );
+                      },
                       itemCount: state.messages.length,
                     );
                   }

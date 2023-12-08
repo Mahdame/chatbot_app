@@ -13,3 +13,12 @@ class SendMessage extends ChatEvent {
   @override
   List<Object> get props => [message];
 }
+
+class BonnieResponse extends ChatEvent {
+  final String userMessage;
+
+  BonnieResponse(this.userMessage);
+
+  @override
+  List<Object> get props => [userMessage];
+}
